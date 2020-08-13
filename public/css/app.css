@@ -1,0 +1,23 @@
+div.container {
+    margin-top: 20px;
+}
+
+div.bannershow {
+    padding: 2em;
+    background-size: cover;
+    background-position: center center;
+}
+
+div.bannershow h1, div.bannershow p {
+    color: rgb(252, 252, 252);
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+div.carousel-caption{
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+div.card-body a:first-child{
+    color: rgb(160, 160, 160)
+}
