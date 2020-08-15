@@ -42,10 +42,10 @@
 						{% for image in ad.images %}
 							<div class="carousel-item {% if loop.first %}active{% endif %}">
 								<img class="d-block w-100" src="{{ image.url }}" alt="First slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ ad.title }}</h5>
-                                    <p>{{ image.caption }}</p>
-                                </div>
+								<div class="carousel-caption d-none d-md-block">
+									<h5>{{ ad.title }}</h5>
+									<p>{{ image.caption }}</p>
+								</div>
 							</div>
 						{% endfor %}
 					</div>
@@ -60,18 +60,33 @@
 				</div>
 			</div>
 			<div class="col">
+				{% set a = ad.author %}
 				<div class="row">
-					<div class="col-4">
-						<img src="http://placehold.it/64x64" alt="avatar de joseph">
+					<div class="col-3">
+						<a href="{{ path('user_show', {'slug': a.slug}) }}">
+							<img src="{{a.picture}}" class="avatar avatar-medium" alt="avatar de {{a.getFullName}}">
+						</a>
 					</div>
-					<div class="col">
-						<h3>joseph dupont</h3>
-						<span class="badge badge-primary">3annonces</span>
+					<div class="col text-center" align="center">
+						<a href="{{ path('user_show', {'slug': a.slug}) }}">
+							<h3>{{a.getFullName}}</h3>
+						</a>
+						{% if a.ads | length > 1 %}
+							<a href="{{ path('user_show', {'slug': a.slug}) }}">
+								<span class="badge badge-primary">{{ a.ads | length}}
+									annonces</span>
+							</a>
+						{% elseif a.ads | length == 1 %}
+							<a href="{{ path('user_show', {'slug': a.slug}) }}">
+								<span class="badge badge-primary">{{ a.ads | length}}
+									annonce</span>
+							</a>
+						{% else %}
+							<span class="badge badge-primary">pas d'annonce</span>
+						{% endif %}
 					</div>
 				</div>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sed earum perferendis optio minima mollitia error nam architecto impedit ipsa!</p>
-				<p>Dolores delectus, impedit molestiae dolorem deleniti dignissimos repellendus. Totam reprehenderit ab dignissimos perspiciatis. Eveniet perspiciatis optio vero perferendis, eligendi iusto.</p>
-				<p>Animi soluta saepe, quis tenetur, atque, incidunt dicta maxime odit sint repudiandae aliquid deleniti ut architecto exercitationem. Voluptate, dignissimos recusandae!</p>
+				{{ a.description | raw}}
 			</div>
 		</div>
 	</div>

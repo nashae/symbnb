@@ -21,3 +21,21 @@ div.carousel-caption{
 div.card-body a:first-child{
     color: rgb(160, 160, 160)
 }
+
+.avatar {
+    max-width: 128px;
+    max-height: 128px;
+    border-radius: 50%;
+}
+
+.avatar-medium {
+    max-width: 96px;
+    max-height: 96px;
+    border-radius: 25%
+}
+
+.avatar-mini {
+    max-width: 24px;
+    max-height: 24px;
+    border-radius: 50%;
+}

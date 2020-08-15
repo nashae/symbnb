@@ -46,6 +46,7 @@ class AdController extends AbstractController
                 $image->setAd($ad);         //on associe l'image à l'entité ad
                 $manager->persist($image);      //on la fait persister
             }
+            $ad->setAuthor($this->getUser());
             //$manager = $this->getDoctrine()->getManager()
             $manager->persist($ad);                      //on demande à ce que les données issues du formulaire reste de facon persistante dans ad
             $manager->flush();                           //on envoie la requete sql
