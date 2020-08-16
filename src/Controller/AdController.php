@@ -6,12 +6,14 @@ use App\Entity\Ad;
 use App\Entity\Image;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
 {
@@ -30,6 +32,7 @@ class AdController extends AbstractController
      * permet de creer une annonce
      * 
      * @Route("/ads/new", name="ads_create")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
@@ -69,6 +72,8 @@ class AdController extends AbstractController
      * permet d'afficher la page d'edition d'une annonce
      *
      * @Route("/ads/{slug}/edit", name="ads_edit")
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Vous ne pouvez pas modifier l'annonce d'un autre utilisateur")
+     * 
      * @return Response
      */
     public function edit(Request $request, Ad $ad, ObjectManager $manager)
@@ -114,5 +119,26 @@ class AdController extends AbstractController
         return $this->render('ad/show.html.twig', [
             'ad' => $ad
         ]);
+    }
+
+    /**
+     * Permet de supprimer une annonce
+     *
+     * @Route("/ads/{slug}/delete", name="ads_delete")
+     * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="Vous n'avez pas le droit d'accéder à cette ressource")
+     * 
+     * @param Ad $ad
+     * @param ObjectManager $manager
+     * @return void
+     */
+    public function delete(Ad $ad, ObjectManager $manager)
+    {
+        $manager->remove($ad);
+        $manager->flush();
+        $this->addFlash(
+            'succes', 
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée !!"
+        );
+        return $this->redirectToRoute("ads_index");
     }
 }
