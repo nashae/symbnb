@@ -39,3 +39,7 @@ div.card-body a:first-child{
     max-height: 24px;
     border-radius: 50%;
 }
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    color: firebrick !important;
+}
