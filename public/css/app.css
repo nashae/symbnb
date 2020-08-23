@@ -13,6 +13,12 @@ div.bannershow h1, div.bannershow p {
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
+div.bannershow .btn {
+    margin-top: 1.5em;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
 div.carousel-caption{
     color: rgb(255, 255, 255);
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
@@ -47,4 +53,7 @@ div.card-body a:first-child{
 span.rating i {
     color: goldenrod;
 }
- 
+
+.alert a {
+    text-decoration: none;
+}

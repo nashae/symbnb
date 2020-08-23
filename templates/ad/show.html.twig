@@ -21,7 +21,7 @@
 					{% endif %}
 				</strong>
 				pour
-				<strong>{{ ad.price }}&euro;</strong>
+				<strong>{{ ad.price | number_format(2, ',', ' ') }}&euro;</strong>
 				par nuit
 			</p>
 			{% if app.user and app.user == ad.author %}
