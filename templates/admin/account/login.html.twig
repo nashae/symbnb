@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Connexion à l'administration</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<script src="https://kit.fontawesome.com/1a7c4dae03.js" crossorigin="anonymous"></script>
+   		<link rel="stylesheet" href="/css/app.css">
+
+	</head>
+	<body>
+        <div class="row mt-5">
+        <div class="col-md-3">
+        </div>
+		<div class="col-md-6">
+			<div class="card bg-primary">
+				<div class="div card-header">
+					<h4 class="card-title" align="center">
+						<i class="fas fa-lock"></i>
+						Connexion à l'administration
+					</h4>
+				</div>
+				<div class="card-body clearfix">
+                    {% if hasError %}
+                        <div class="alert alert-warning">
+                            <p>Informations incorrectes !</p>
+                        </div>
+                    {% endif %}
+					<form method="post">
+						<div class="form-group">
+							<label for="_username">Email</label>
+							<input type="text" class="form-control" placeholder="Adresse email.." name="_username" value="{{username}}">
+						</div>
+						<div class="form-group">
+							<label for="_password"></label>
+							<input type="password" class="form-control" placeholder="Mot de passe.." name="_password">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary float-left">
+								<i class="fas fa-lock-open"></i>
+								Connexion
+							</button>
+							<a href="{{path('homepage')}}" class="btn btn-link float-right">
+								<i class="fas fa-arrow-circle-left"></i>
+								Retour à l'accueil
+							</a>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+        </row>
+	</body>
+</html>

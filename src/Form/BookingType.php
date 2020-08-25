@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\FrenchToDateTimeTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\GroupSequence;
 
 class BookingType extends ApplicationType
 {
@@ -38,6 +39,10 @@ class BookingType extends ApplicationType
     {
         $resolver->setDefaults([
             'data_class' => Booking::class,
+            'validation_groups' => [
+                'Default',
+                'front'
+            ]
         ]);
     }
 }
